@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TestProject.iml" filepath="$PROJECT_DIR$/.idea/TestProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redis-distributed-lock/redis-distributed-lock.iml" filepath="$PROJECT_DIR$/redis-distributed-lock/redis-distributed-lock.iml" />
     </modules>
   </component>
 </project>
