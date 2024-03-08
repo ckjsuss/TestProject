@@ -3,10 +3,14 @@ server:
   port: 8080
 # 应用名称
 spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
   redis:
-    port: 31642
-    password: 310012
-    host: 172.16.4.250
+    port: 16379
+    password: pass@word
+    host: 172.25.1.188
     database: 2
     lettuce:
       pool:

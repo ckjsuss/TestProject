@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public class TestController {
     @Resource
     private RedisTemplate stringRedisTemplate;
 
-    @RequestMapping("/deduct")
+    @RequestMapping(value = "/deduct",method = RequestMethod.GET)
     public String deductStock() {
         int stock = Integer.parseInt(String.valueOf(stringRedisTemplate.opsForValue().get("stock")));
         if(stock > 0) {
@@ -35,5 +36,13 @@ public class TestController {
             logger.error("扣减失败，库存不足");
         }
         return "end";
+    }
+
+    @RequestMapping(value = "/testError",method = RequestMethod.GET)
+    public String testError(int age){
+        if (age<=0) {
+            throw new IllegalArgumentException();
+        }
+        return "";
     }
 }
