@@ -25,7 +25,7 @@ public class TestController {
     @Resource
     private RedisTemplate stringRedisTemplate;
 
-    @RequestMapping(value = "/deduct",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/deduct",method = RequestMethod.GET)
     public String deductStock() {
         int stock = Integer.parseInt(String.valueOf(stringRedisTemplate.opsForValue().get("stock")));
         if(stock > 0) {

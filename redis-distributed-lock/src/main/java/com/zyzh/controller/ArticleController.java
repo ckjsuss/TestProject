@@ -22,7 +22,7 @@ import javax.annotation.Resource;
  * @createTime: 2024-03-08 14:04
  */
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/v1/api/article")
 public class ArticleController {
 
     private static Logger logger = LoggerFactory.getLogger(ArticleController.class);

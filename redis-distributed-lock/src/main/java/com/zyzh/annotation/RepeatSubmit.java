@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface RepeatSubmit {
     String value() default "";
-    long time() default 1; // 单位:s
+    long time() default 1;
 
 }
 
