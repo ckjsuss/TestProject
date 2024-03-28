@@ -1,8 +1,46 @@
 # 应用服务 WEB 访问端口
 server:
-  port: 8080
-# 应用名称
+  port: 18080
+
+## 启用caffeine 堆内缓存
 spring:
+  application: # 应用名称
+    name: mall-goods
+
+  profiles: # 环境配置
+    active: dev
+
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+        # 配置文件格式
+        file-extension: yml
+    sentinel:
+      # 取消控制台懒加载
+      eager: true
+      transport:
+        # 控制台地址
+        dashboard: 127.0.0.1:8080
+      # nacos配置持久化
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-SENTINEL.json
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+  ## 本地缓存配置
+  cache:
+    type: caffeine
+    caffeine:
+      spec: refreshAfterWrite=5s
+
   mvc:
     view:
       prefix: /

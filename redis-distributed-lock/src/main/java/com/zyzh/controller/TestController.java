@@ -1,14 +1,21 @@
 package com.zyzh.controller;
 
+import com.zyzh.service.TestService;
+import com.zyzh.utils.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @Title: TestController
@@ -45,4 +52,37 @@ public class TestController {
         }
         return "";
     }
+
+    /**
+     * 接口缓存
+     * @param id
+     * @return
+     */
+    @Cacheable(value = "USER",key = "#id",condition = "#id.equals('1')")
+    @GetMapping("/user")
+    public Result user(String id) {
+        logger.info("请求参数:{}", id);
+        return Result.success(new Date());
+    }
+
+
+    @CachePut(value = "USER",key = "#id")
+    @GetMapping("/putUser")
+    public Result putUser(String id) {
+        logger.info("请求参数:{}", id);
+        return Result.success(new Date());
+    }
+
+    /**
+     * 删除缓存
+     * @param id
+     * @return
+     */
+    @CacheEvict(value = "USER",key = "#id")
+    @GetMapping("/delUser")
+    public Result delUser(String id) {
+        logger.info("请求参数:{}", id);
+        return Result.success(new Date());
+    }
+
 }
