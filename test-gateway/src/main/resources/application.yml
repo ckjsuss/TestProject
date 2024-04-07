@@ -1,0 +1,12 @@
+server:
+  port: 18081
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: mall-goods
+          uri: http://127.0.0.1:18080
+          predicates:
+            - Path=/sentinel/**
+
