@@ -1,9 +1,8 @@
 # 工程简介
-
+- 自定义注解，nacos+sentinel组件集成 
 ## RepeatSubmit 注解
 
 @annotation(com.zyzh.annotation.RepeatSubmit)
-
 ```
 @PostMapping("/fuzzy")
 @RepeatSubmit(time = 1)
@@ -13,9 +12,6 @@ public Result fuzzy(@RequestBody TestReq req){
 }
 ```
 
-## 组件
-### nacos
-### sentinel
 #### windows 脚本
 ```
 @echo off
